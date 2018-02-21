@@ -27,6 +27,27 @@ class CreatePrediosTable extends Migration
             $table->string('destino_economico');//
             $table->integer('porc_tarifa');//este se maneja con un boolean 0 y 1
             $table->string('expediente');//  esto va en otra tabla
+
+
+            $table->date('inicio');
+            $table->date('final');
+
+            //datos cambiables por año
+            $table->integer('estrato'); // esto algo como las clases de las familias
+            $table->text('observacion');// Observacion del predial
+            $table->bigInteger('avaluo');                                
+            $table->bigInteger('v_declarado');
+            $table->bigInteger('impuesto_predial');
+            $table->bigInteger('interes_predial');
+            $table->bigInteger('contribucion_car');
+            $table->bigInteger('interes_Car');
+            $table->bigInteger('otros_conceptos');
+            $table->bigInteger('cuantia');
+            $table->integer('existe');
+            $table->string('ubicacion');
+            $table->string('exento');
+            $table->integer('semaforo');
+            $table->string('estado');
             
             $table->timestamps();
             $table->softDeletes();

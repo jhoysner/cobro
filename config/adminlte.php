@@ -112,23 +112,33 @@ return [
         [
             'text' => 'Blog',
             'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'can'  => 'manage',
         ],
         [
             'text'        => 'Pages',
             'url'         => 'admin/pages',
             'icon'        => 'file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'can'  => 'manage',
         ],
-        'ACCOUNT SETTINGS',
+        'General',
         [
-            'text' => 'Profile',
+            'text' => 'Participantes',
+            'url'  => 'admin/settings',
+            'icon' => 'users',
+        ],
+        [
+            'text' => 'relaciones',
+            'url'  => 'admin/settings',
+            'icon' => 'sitemap ',
+        ],        
+        'Cobro Predial',
+        [
+            'text' => 'Predios',
             'url'  => 'admin/settings',
             'icon' => 'user',
         ],
         [
-            'text' => 'Change Password',
+            'text' => 'Proceso Predial',
             'url'  => 'admin/settings',
             'icon' => 'lock',
         ],
@@ -169,19 +179,6 @@ return [
                     'url'  => '#',
                 ],
             ],
-        ],
-        'LABELS',
-        [
-            'text'       => 'Important',
-            'icon_color' => 'red',
-        ],
-        [
-            'text'       => 'Warning',
-            'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'Information',
-            'icon_color' => 'aqua',
         ],
     ],
 

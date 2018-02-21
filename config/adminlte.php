@@ -134,7 +134,7 @@ return [
         'Cobro Predial',
         [
             'text' => 'Predios',
-            'url'  => 'admin/settings',
+            'url'  => 'admin/predios',
             'icon' => 'user',
         ],
         [

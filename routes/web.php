@@ -19,6 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::prefix('admin')->group(function () {
+	Route::resource('predios', 'PredioController');
+});

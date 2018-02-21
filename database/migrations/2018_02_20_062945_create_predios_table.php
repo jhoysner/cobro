@@ -16,7 +16,7 @@ class CreatePrediosTable extends Migration
         Schema::create('predios', function (Blueprint $table) {
             $table->increments('id');
             $table->string('ficha_catastral', 40)->unique(); //este es el identificador nacional de un predio como la cedula de una persona en mi pais el dni en otros es la identificacion unico del predio a nivel nacional no se puede repetir
-            $table->string('matricula_inmoviliaria', 40); //es otro identificador pero ya es cuando se matricula el predi
+            $table->string('matricula_inmobiliaria', 40); //es otro identificador pero ya es cuando se matricula el predi
             $table->string('direccion_predio', 200);//direccion donde esta ubicado el predio
             $table->string('nombre_predio', 200);//algunos predios tiene nombre cmo hacienda la grande y es una finca
             $table->integer('a_hectareas');// area en hectareas ejemplo una finca tiene 32525 metros entoces aca se colocan solo 3 hectareas que son los 300000

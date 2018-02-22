@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Predio;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PredioController extends Controller
@@ -26,8 +27,9 @@ class PredioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('predios.create');
+    {   
+        $predio = new Predio;
+        return view('predios.create', compact('predio'));
     }
 
     /**
@@ -38,7 +40,44 @@ class PredioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $predio = new Predio;
+        
+        $predio->ficha_catastral = $request->ficha_catastral;
+        $predio->matricula_inmobiliaria = $request->matricula_inmobiliaria;
+        $predio->direccion_predio = $request->direccion_predio;
+        $predio->nombre_predio = $request->nombre_predio;
+        $predio->a_hectareas = $request->a_hectareas;
+        $predio->a_metros = $request->a_metros;
+        $predio->a_construida = $request->a_construida ;
+        $predio->avaluo = $request->avaluo;
+        $predio->tipo_tarifa = $request->tipo_tarifa;
+        $predio->destino_economico = $request->destino_economico;
+        $predio->porc_tarifa = $request->porc_tarifa;
+        $predio->estrato = $request->estrato;
+        $predio->observacion = $request->observacion;
+        $predio->expediente = $request->expediente;
+        $predio->v_declarado = $request->v_declarado;
+        $predio->impuesto_predial = $request->impuesto_predial;
+        $predio->interes_predial = $request->interes_predial;
+        $predio->contribucion_car = $request->contribucion_car;
+        $predio->interes_Car = $request->interes_Car;
+        $predio->otros_conceptos = $request->otros_conceptos;
+        $predio->cuantia = $request->cuantia;
+        $predio->inicio = Carbon::now();
+        $predio->final =  Carbon::now();
+        $predio->existe = $request->existe;
+        $predio->ubicacion = $request->ubicacion;
+        $predio->exento = $request->exento;
+        $predio->semaforo = $request->semaforo;
+        $predio->estado = $request->estado;
+
+        if($predio->save()){
+
+            return redirect('/admin/predios');
+
+        }else {
+        return view('admin/predios.create', ['predios' => $predios]);
+        }
     }
 
     /**
@@ -60,7 +99,9 @@ class PredioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $predio = Predio::findOrFail($id);
+
+        return view('predios.edit', ['predio' => $predio]);
     }
 
     /**
@@ -72,7 +113,45 @@ class PredioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $predio = Predio::findOrFail($id);
+
+        $predio->ficha_catastral = $request->ficha_catastral;
+        $predio->matricula_inmobiliaria = $request->matricula_inmobiliaria;
+        $predio->direccion_predio = $request->direccion_predio;
+        $predio->nombre_predio = $request->nombre_predio;
+        $predio->a_hectareas = $request->a_hectareas;
+        $predio->a_metros = $request->a_metros;
+        $predio->a_construida = $request->a_construida ;
+        $predio->avaluo = $request->avaluo;
+        $predio->tipo_tarifa = $request->tipo_tarifa;
+        $predio->destino_economico = $request->destino_economico;
+        $predio->porc_tarifa = $request->porc_tarifa;
+        $predio->estrato = $request->estrato;
+        $predio->observacion = $request->observacion;
+        $predio->expediente = $request->expediente;
+        $predio->v_declarado = $request->v_declarado;
+        $predio->impuesto_predial = $request->impuesto_predial;
+        $predio->interes_predial = $request->interes_predial;
+        $predio->contribucion_car = $request->contribucion_car;
+        $predio->interes_Car = $request->interes_Car;
+        $predio->otros_conceptos = $request->otros_conceptos;
+        $predio->cuantia = $request->cuantia;
+        $predio->inicio = Carbon::now();
+        $predio->final =  Carbon::now();
+        $predio->existe = $request->existe;
+        $predio->ubicacion = $request->ubicacion;
+        $predio->exento = $request->exento;
+        $predio->semaforo = $request->semaforo;
+        $predio->estado = $request->estado;
+
+
+        if($predio->save()){
+
+            return redirect('/admin/predios');
+
+        }else {
+        return view('admin/predios.create', ['predio' => $predio]);
+        }
     }
 
     /**
@@ -83,6 +162,9 @@ class PredioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $predio = Predio::findOrFail($id);
+        $predio->delete();
+
+        return redirect('admin/predios');
     }
 }

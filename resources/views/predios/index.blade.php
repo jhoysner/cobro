@@ -36,8 +36,10 @@
 		    		<td>{{$predio->matricula_inmobiliaria}}</td>
 		    		<td>{{$predio->direccion_predio}}</td>
 		    		<td>{{$predio->nombre_predio}}</td>
-		    		<td><a href="#" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
-		    		<td><a href="#" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+		    		<td><a href="{{ url("admin/predios/".$predio->id."/edit")}}" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+		    		<td>
+		    		    @include('predios.delete', ['predio' => $predio])
+		    		</td>
 		    	</tr>
 			@endforeach
 			</tbody>

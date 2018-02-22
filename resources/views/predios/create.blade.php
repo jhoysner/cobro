@@ -11,13 +11,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
-				<form action="">
-					<div class="form-group">
-						<label for="">Ficha Catastral</label>
-						<input type="text">
-					</div>
-					
-				</form>
+				 @include('predios.partials._form', ['predio' => $predio, 'url' => 'admin/predios', 'method' => 'POST'])
 			</div>
 		</div>
 	</div>

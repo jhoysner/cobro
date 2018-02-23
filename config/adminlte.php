@@ -122,8 +122,8 @@ return [
         ],
         'General',
         [
-            'text' => 'Participantes',
-            'url'  => 'admin/settings',
+            'text' => 'Personas',
+            'url'  => 'admin/personas',
             'icon' => 'users',
         ],
         [

@@ -22,4 +22,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin' , 'middleware' => 'auth'] ,function () 
 {
 	Route::resource('predios', 'PredioController');
+	Route::resource('personas', 'PersonasController');
 });

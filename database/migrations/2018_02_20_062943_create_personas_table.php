@@ -20,7 +20,7 @@ class CreatePersonasTable extends Migration
             $table->string('email')->unique();
             $table->string('direccion', 200);
             $table->enum('tipo', ['NATURAL', 'JURIDICA']);
-            $table->bigInteger('celular');
+            $table->bigInteger('telefono');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -23,4 +23,7 @@ Route::group(['prefix' => 'admin' , 'middleware' => 'auth'] ,function ()
 {
 	Route::resource('predios', 'PredioController');
 	Route::resource('personas', 'PersonasController');
+	Route::get('persona-find/{identificador}', 'PersonasController@personaFind');
+	Route::post('persona/find-create', 'PersonasController@PersonafindCreate');
+	Route::post('predio-asignar', 'PredioController@predioAsignarPersona');
 });

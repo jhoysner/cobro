@@ -1,8 +1,9 @@
 <?php
 
+use App\Persona;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class PersonaTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(PersonaTableSeeder::class);
+		 factory(Persona::class, 5)->create();
     }
 }

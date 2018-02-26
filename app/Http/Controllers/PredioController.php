@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PersonaPredio;
 use App\Predio;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -166,5 +167,19 @@ class PredioController extends Controller
         $predio->delete();
 
         return redirect('admin/predios');
+    }
+
+    public function predioAsignarPersona(Request $request)
+    {
+        $personapredio = new PersonaPredio;
+
+        $personapredio->predio_id = $request->predio_id;
+        $personapredio->persona_id = $request->persona_id;
+        $personapredio->porcentaje = $request->porcentaje;
+
+        $personapredio->save();
+
+
+        return  redirect('admin/predios');
     }
 }

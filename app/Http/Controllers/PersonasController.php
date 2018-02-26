@@ -125,4 +125,37 @@ class PersonasController extends Controller
 
         return redirect('admin/personas');
     }
+
+    public function personaFind($identificador){
+
+        $persona = Persona::where('num_dc',$identificador)->first();
+        
+        return response()->json($persona);
+    }
+
+    public function PersonafindCreate(Request $request){
+
+        $persona = Persona::where('num_dc',$request->num_dc)->first();
+
+        if ($persona) {
+            
+            return $persona;
+        }
+
+        $persona = new Persona;
+
+        $persona->nombre = $request->nombre;
+        $persona->num_dc = $request->num_dc;
+        $persona->email = $request->email;
+        $persona->direccion = $request->direccion;
+        $persona->tipo = $request->tipo;
+        $persona->telefono = $request->telefono;
+
+        $persona->save();
+
+
+        return $persona;
+        
+    }
 }
+  

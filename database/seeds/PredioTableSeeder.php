@@ -1,8 +1,9 @@
 <?php
 
+use App\Predio;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class PredioTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(PersonaTableSeeder::class);
+       	factory(Predio::class, 5)->create();
     }
 }

@@ -122,6 +122,11 @@ return [
         ],
         'General',
         [
+            'text' => 'Usuarios',
+            'url'  => 'admin/usuarios',
+            'icon' => 'user',
+        ],        
+        [
             'text' => 'Personas',
             'url'  => 'admin/personas',
             'icon' => 'users',

@@ -26,4 +26,5 @@ Route::group(['prefix' => 'admin' , 'middleware' => 'auth'] ,function ()
 	Route::get('persona-find/{identificador}', 'PersonasController@personaFind');
 	Route::post('persona/find-create', 'PersonasController@PersonafindCreate');
 	Route::post('predio-asignar', 'PredioController@predioAsignarPersona');
+	Route::resource('usuarios', 'UserController');
 });

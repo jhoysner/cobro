@@ -15,7 +15,6 @@ class CreateRepresentantesTable extends Migration
     {
         Schema::create('representantes', function (Blueprint $table) {
             $table->increments('id');
-
             $table->integer('rep_id')->unsigned();
             $table->foreign('rep_id')->references('id')->on('personas');
             $table->integer('juridico_id')->unsigned();

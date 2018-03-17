@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\UserType;
+use App\UserBoss;
+use App\Type;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,7 +15,7 @@ class UserController extends Controller
     {
         
         $usuarios = User::all();
-
+        
         return view('usuarios.index', compact('usuarios')); 
     }
 
@@ -28,7 +29,7 @@ class UserController extends Controller
         $usuario = new User;
 
             
-        $tipos =  UserType::pluck('nombre', 'id');
+        $tipos =  Type::pluck('nombre', 'id');
 
         return view('usuarios.create', compact('usuario' ,'tipos')); 
     }
@@ -51,10 +52,16 @@ class UserController extends Controller
 
         if($usuario->save()){
 
+             $userBoss = new UserBoss;
+             $userBoss->user_id = $usuario->id;
+             $userBoss->boss_id = $request->jefe;
+
+             $userBoss->save();
+
             return redirect('/admin/usuarios');
 
         }else {
-        return view('admin/usuarios.create', ['usuario' => $usuario]);
+            return view('admin/usuarios.create', ['usuario' => $usuario]);
         }
     }
 
@@ -123,5 +130,15 @@ class UserController extends Controller
 
         return redirect('admin/usuarios');
     }
+
+    public function userstype(Request $request, $id)
+    {   
+           
+        if($request->ajax()){
+            $userstype = User::where('type_id', $id - 1)->get();
+            return response()->json($userstype);
+        }
+    }
+
 
 }

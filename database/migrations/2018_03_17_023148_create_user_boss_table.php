@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserTypeTable extends Migration
+class CreateUserBossTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,15 @@ class CreateUserTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_type', function (Blueprint $table) {
+        Schema::create('user_boss', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
+            $table->integer('user_id')->unsigned();
+            $table->integer('boss_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('boss_id')->references('id')->on('users');
+
         });
     }
 
@@ -27,6 +32,6 @@ class CreateUserTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_type');
+        Schema::dropIfExists('user_boss');
     }
 }

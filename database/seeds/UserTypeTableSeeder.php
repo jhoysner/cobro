@@ -1,6 +1,6 @@
 <?php
 
-use App\UserType;
+use App\Type;
 use Illuminate\Database\Seeder;
 
 class UserTypeTableSeeder extends Seeder
@@ -12,19 +12,23 @@ class UserTypeTableSeeder extends Seeder
      */
     public function run()
     {
-        UserType::create([
+        Type::create([
+                'nombre' => 'Admin',
+        ]);        
+
+        Type::create([
                 'nombre' => 'Juez',
         ]);
 
-        UserType::create([
+        Type::create([
+                'nombre' => 'Coordinador',
+        ]);
+                
+        Type::create([
                 'nombre' => 'Abogado',
         ]);        
 
-        UserType::create([
-                'nombre' => 'Coordinador',
-        ]);        
-
-        UserType::create([
+        Type::create([
                 'nombre' => 'Secretaria',
         ]);        
 

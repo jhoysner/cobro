@@ -9,7 +9,12 @@
             </div>
             <div class="form-group">
                 {{ Form::label('Tipo', 'Tipo')}}
-                {{ Form::select('tipo', $tipos , $usuario->tipo, ['placeholder' => 'Selecciona Tipo de usuario']) }}            
+                {{ Form::select('tipo', $tipos , $usuario->tipo, ['placeholder' => 'Selecciona Tipo de usuario' ,'id' => 'tipo']) }}            
+            </div>                 
+
+            <div class="form-group">
+                {{ Form::label('Jefe', 'Jefe')}}
+                {{ Form::select('jefe', [] , $usuario->jefe, ['placeholder' => 'Selecciona Tipo de usuario', 'id' => 'jefe']) }}                   
             </div>           
 
             <div class="form-group">
@@ -23,3 +28,5 @@
                 <input type="submit" value="enviar" class="btn btn-success">
             </div>
 {!! Form::close()!!}
+
+

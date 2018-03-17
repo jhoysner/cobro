@@ -35,7 +35,7 @@
 		    		<td class="text-center">{{$usuario->id}}</td>
 		    		<td class="text-center">{{$usuario->name}}</td>
 		    		<td class="text-center">{{$usuario->email}}</td>
-		    		<td class="text-center">{{$usuario->type_id}}</td>
+		    		<td class="text-center">{{$usuario->type->nombre}}</td>
 		    		<td class="text-center"><a href="{{ url("admin/usuarios/".$usuario->id."/edit")}}" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
 		    		<td class="text-center">
 		    		    @include('usuarios.delete', ['usuario' => $usuario])

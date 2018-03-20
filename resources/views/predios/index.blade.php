@@ -16,6 +16,14 @@
 				</a>
 			</div>
 		</div>
+
+		<br>
+
+		<ul class="nav nav-tabs">
+		  <li role="presentation" class="active"><a href="{{url('admin/predios')}}">Predios</a></li>
+		  <li role="presentation"><a href="{{route('unnassigned')}}">Predios sin Asignar</a></li>
+		  <li role="presentation"><a href="{{route('assignor')}}">Predios Asignados</a></li> 
+		</ul>
 		<br>
 		<table class="table table-bordered cell-border table-hover" id="example"  data-form="deleteForm">
 			 <thead>

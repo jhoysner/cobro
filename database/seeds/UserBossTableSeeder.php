@@ -1,9 +1,9 @@
 <?php
 
-use App\Predio;
+use App\UserBoss;
 use Illuminate\Database\Seeder;
 
-class PredioTableSeeder extends Seeder
+class UserBossTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,7 @@ class PredioTableSeeder extends Seeder
      */
     public function run()
     {
-       	factory(Predio::class, 50)->create();
+        
+        factory(UserBoss::class, 20)->create();
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\PersonaPredio;
 use App\Predio;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -182,4 +183,41 @@ class PredioController extends Controller
 
         return  redirect('admin/predios');
     }
+
+    public function predioAsignarAdministrativeStore(Request $request){
+
+        $predios = $request->predio_id;
+
+        foreach ($predios as $predio) 
+        {
+            echo $predio;
+        }
+    }
+
+    public function predioSinAsignar(){
+
+
+        $predios = Predio::where('estado', 0)->get();
+
+        // $usuariosTypeFilt = User::all()->reject(function ($user) { 
+        //                      return $user->type->nombre <> 'Secretaria';
+        //                     })
+        //                     ->pluck('name', 'id');
+
+        $tipo = 'Admin';
+
+        $usuariosTypeFilt = User::whereHas('type', function ($query) use ($tipo) {
+                            $query->where('nombre',$tipo);
+                        })->pluck('name', 'id');
+         
+
+        return view('predios.unassigned', compact('predios' ,'usuariosTypeFilt'));
+    }    
+
+    public function predioAsignado(){
+
+        $predios = Predio::where('estado', 1)->get();
+
+        return view('predios.assignor', compact('predios'));
+    }   
 }

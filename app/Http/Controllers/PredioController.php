@@ -204,11 +204,14 @@ class PredioController extends Controller
         //                     })
         //                     ->pluck('name', 'id');
 
-        $tipo = 'Admin';
+        $usuariosTypeFilt = User::whereHas('user_boss', function ($query) {
+                                $query->where('boss_id' , auth()->user()->id);
+                            })->pluck('name', 'id');
 
-        $usuariosTypeFilt = User::whereHas('type', function ($query) use ($tipo) {
-                            $query->where('nombre',$tipo);
-                        })->pluck('name', 'id');
+
+        // $usuariosTypeFilt = User::whereHas('type', function ($query) use ($tipo) {
+        //                     $query->where('id',$tipo-1);
+        //                 })->pluck('name', 'id');
          
 
         return view('predios.unassigned', compact('predios' ,'usuariosTypeFilt'));

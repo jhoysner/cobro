@@ -12,4 +12,10 @@ class UserBoss extends Model
         'user_id', 
         'user_boss', 
     ];
+
+
+    public function users(){
+
+    	return $this->belongsTo('App\User');
+    }
 }

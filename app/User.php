@@ -31,6 +31,11 @@ class User extends Authenticatable
     public function type()
     {
         return $this->belongsTo('App\Type');
+    }    
+
+    public function user_boss()
+    {
+        return $this->hasMany('App\UserBoss');
     }
 
 }

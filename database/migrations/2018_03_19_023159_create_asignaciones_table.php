@@ -15,8 +15,8 @@ class CreateAsignacionesTable extends Migration
     {
         Schema::create('asignaciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('abogado_id')->unsigned();
-            $table->integer('secretaria_id')->unsigned();
+            $table->integer('abogado_id')->nullable()->unsigned();
+            $table->integer('secretaria_id')->nullable()->unsigned();
             $table->integer('cc_id');
             $table->enum('tabla',['predios','juridicos','transitos','policivos']);// campo referencia a las tablas cc 
             $table->timestamps();

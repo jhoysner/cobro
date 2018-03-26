@@ -4,18 +4,11 @@
 @section('title', 'CobroCoactivo')
 
 @section('content_header')
-    <h1>Predios Asignados</h1>
+    <h1>Predios Asignados ({{$predios->count()}})</h1>
 @stop
 
 @section('content')
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-2">
-				<a href="{{url('admin/predios/create')}}" class="btn btn-success">
-					Nuevo Predio <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-				</a>
-			</div>
-		</div>
 
 		<br>
 

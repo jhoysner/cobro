@@ -8,6 +8,10 @@
 @stop
 
 @section('content')
+
+    @include('alertas.errors')
+    @include('alertas.success') 
+    
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-2">

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Asignacion;
 use App\PersonaPredio;
 use App\Predio;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class PredioController extends Controller
 {
@@ -184,25 +186,19 @@ class PredioController extends Controller
         return  redirect('admin/predios');
     }
 
-    public function predioAsignarAdministrativeStore(Request $request){
 
-        $predios = $request->predio_id;
-
-        foreach ($predios as $predio) 
-        {
-            echo $predio;
-        }
-    }
-
-    public function predioSinAsignar(){
+    public function predioSinAsignar()
+    {
 
 
-        $predios = Predio::where('estado', 0)->get();
+        // $predios = Predio::where('estado', 1)->first();
 
         // $usuariosTypeFilt = User::all()->reject(function ($user) { 
         //                      return $user->type->nombre <> 'Secretaria';
         //                     })
         //                     ->pluck('name', 'id');
+
+        $predios = Predio::doesntHave('asignacion')->get();
 
         $usuariosTypeFilt = User::whereHas('user_boss', function ($query) {
                                 $query->where('boss_id' , auth()->user()->id);
@@ -217,9 +213,32 @@ class PredioController extends Controller
         return view('predios.unassigned', compact('predios' ,'usuariosTypeFilt'));
     }    
 
+    public function predioAsignarAdministrativeStore(Request $request)
+    {
+
+        $predios = $request->predios;
+
+        foreach ($predios as $predio) {
+            
+            $asignacion = new Asignacion;
+            $asignacion->abogado_id = $request->encargado;
+            $asignacion->cc_id = $predio;
+            $asignacion->tabla = 'predios';
+            $asignacion->save();
+
+        }
+
+
+        Session::flash('message','Se han asignados los predios exitosamente');
+
+        return  redirect('admin/predios');
+    }   
+
     public function predioAsignado(){
 
-        $predios = Predio::where('estado', 1)->get();
+        // $predios = Predio::where('estado', 1)->get();
+
+        $predios = Predio::has('asignacion')->get();
 
         return view('predios.assignor', compact('predios'));
     }   

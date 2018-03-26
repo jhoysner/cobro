@@ -14,7 +14,7 @@ class UserController extends Controller
     public function index()
     {
         
-        $usuarios = User::all();
+        $usuarios = User::where('id','<>',1)->get();
         
         return view('usuarios.index', compact('usuarios')); 
     }
@@ -83,10 +83,20 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {   
+
         $usuario = User::findOrFail($id);
 
-        return view('usuarios.edit', ['usuario' => $usuario]);
+        $tipos =  Type::pluck('nombre', 'id');
+
+        $userbos = UserBoss::where('user_id', $id)->first();
+
+
+        $userstype = User::where('type_id', $usuario->type_id - 1)->pluck('name','id');
+
+        $jefe = User::where('id' , $userbos->boss_id)->first();
+
+        return view('usuarios.edit', compact('usuario' ,'userstype','tipos', 'jefe'));
     }
 
     /**
@@ -98,20 +108,26 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
+        
         $usuario = User::findOrFail($id);
 
         $usuario->name = $request->name;
         $usuario->email = $request->email;
-        $usuario->tipo = $request->tipo;
+        $usuario->type_id = $request->tipo;
         $usuario->password = bcrypt($request->password);
 
-
         if($usuario->save()){
+
+             $userBoss =  UserBoss::where('user_id', $id)->first();
+             $userBoss->boss_id = $request->jefe;
+
+             $userBoss->save();
 
             return redirect('/admin/usuarios');
 
         }else {
-        return view('admin/usuarios.create', ['usuario' => $usuario]);
+            return view('admin/usuarios.create', ['usuario' => $usuario]);
         }
 
     }

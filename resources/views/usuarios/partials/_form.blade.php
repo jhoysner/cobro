@@ -7,15 +7,33 @@
                 {{ Form::label('Email', 'Email')}}
                 {{ Form::text('email', $usuario->email, ['class' => 'form-control', 'placeholder' => 'Email']) }}            
             </div>
-            <div class="form-group">
-                {{ Form::label('Tipo', 'Tipo')}}
-                {{ Form::select('tipo', $tipos , $usuario->tipo, ['placeholder' => 'Selecciona Tipo de usuario' ,'id' => 'tipo']) }}            
-            </div>                 
 
-            <div class="form-group">
-                {{ Form::label('Jefe', 'Jefe')}}
-                {{ Form::select('jefe', [] , $usuario->jefe, ['placeholder' => 'Selecciona Tipo de usuario', 'id' => 'jefe']) }}                   
-            </div>           
+            @if ($method == 'POST')
+
+                <div class="form-group">
+                    {{ Form::label('Tipo', 'Tipo')}}
+                    {{ Form::select('tipo', $tipos , $usuario->type_id, ['placeholder' => 'Selecciona Tipo de usuario' ,'id' => 'tipo']) }}            
+                </div>
+            @else
+                <div class="form-group">
+                  {{ Form::label('Tipo', 'Tipo')}}
+                  {{ Form::select('tipo', $tipos , $usuario->type_id, ['placeholder' => 'Selecciona Tipo de usuario' ,'id' => 'tipo'])  }}   
+                </div> 
+            @endif
+
+
+            @if ($method == 'POST')
+                <div class="form-group">
+                    {{ Form::label('Jefe', 'Jefe')}}
+                    {{ Form::select('jefe', [] , [], ['placeholder' => 'Selecciona Tipo de usuario', 'id' => 'jefe']) }}                   
+                </div>      
+            @else
+                <div class="form-group">
+                    {{ Form::label('Jefe', 'Jefe')}}
+                    {{ Form::select('jefe', $userstype , $jefe->id, ['placeholder' => 'Selecciona Tipo de usuario', 'id' => 'jefe']) }}                   
+                </div>           
+
+            @endif
 
             <div class="form-group">
                 {{ Form::label('Contraseña')}} <br>

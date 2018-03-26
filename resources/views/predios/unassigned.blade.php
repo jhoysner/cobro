@@ -4,8 +4,11 @@
 @section('title', 'CobroCoactivo')
 
 @section('content_header')
-    <h1>Predios sin Asignar ({{$predios->count()}})
-</h1>
+    <h1>Predios sin Asignar 
+    	@isset($predios)
+    		({{$predios->count()}})
+    	@endisset
+	</h1>
 @stop
 
 @section('content')
@@ -43,18 +46,20 @@
 				    </thead>
 
 				    <tbody>
-						@foreach($predios as $predio)
-					    	<tr>
-					    		<td  class="text-center">
-					    			<div class="checkbox checkbox-success"><input type="checkbox" id="checkbox2" name="predios[]" 	value="{{$predio->id}}">
-					    			</div
-					    		></td>
-					    		<td class="text-center">{{$predio->ficha_catastral}}</td>
-					    		<td class="text-center">{{$predio->matricula_inmobiliaria}}</td>
-					    		<td class="text-center">{{$predio->direccion_predio}}</td>
-					    		<td class="text-center">{{$predio->nombre_predio}}</td>
-					    	</tr>
-						@endforeach
+				    	@isset($predios)
+							@foreach($predios as $predio)
+						    	<tr>
+						    		<td  class="text-center">
+						    			<div class="checkbox checkbox-success"><input type="checkbox" id="checkbox2" name="predios[]" 	value="{{$predio->id}}">
+						    			</div
+						    		></td>
+						    		<td class="text-center">{{$predio->ficha_catastral}}</td>
+						    		<td class="text-center">{{$predio->matricula_inmobiliaria}}</td>
+						    		<td class="text-center">{{$predio->direccion_predio}}</td>
+						    		<td class="text-center">{{$predio->nombre_predio}}</td>
+						    	</tr>
+							@endforeach
+						@endisset
 					</tbody>
 				</table>
 			</div>	
@@ -70,7 +75,7 @@
 			    <div class="modal-content">
 			      <div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h4 class="modal-title">Asignar Dueño a Predio</h4>
+			        <h4 class="modal-title">Asignar Encargado a Predio</h4>
 			      </div>
 			      <div class="modal-body">
 					<div class="row">

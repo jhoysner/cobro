@@ -4,7 +4,12 @@
 @section('title', 'CobroCoactivo')
 
 @section('content_header')
-    <h1>Predios Asignados ({{$predios->count()}})</h1>
+    <h1>Predios Asignados 
+    	@isset($predios)
+    		  ({{$predios->count()}})
+    	    
+    	@endisset
+    </h1>
 @stop
 
 @section('content')
@@ -29,14 +34,16 @@
 		    </thead>
 
 		    <tbody>
-			@foreach($predios as $predio)
-		    	<tr>
-		    		<td>{{$predio->ficha_catastral}}</td>
-		    		<td>{{$predio->matricula_inmobiliaria}}</td>
-		    		<td>{{$predio->direccion_predio}}</td>
-		    		<td>{{$predio->nombre_predio}}</td>
-		    	</tr>
-			@endforeach
+		    	@isset($predios)
+					@foreach($predios as $predio)
+				    	<tr>
+				    		<td>{{$predio->ficha_catastral}}</td>
+				    		<td>{{$predio->matricula_inmobiliaria}}</td>
+				    		<td>{{$predio->direccion_predio}}</td>
+				    		<td>{{$predio->nombre_predio}}</td>
+				    	</tr>
+					@endforeach
+		    	@endisset
 			</tbody>
 		</table>
 	</div>

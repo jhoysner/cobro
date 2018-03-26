@@ -21,7 +21,7 @@
 @section('js')
    <script>
         $('#tipo').change(function(event){
-            $.get("/admin/usuarios-tipo/"+event.target.value+"", function(response, especializaciones){
+            $.get("/admin/usuarios-tipo/"+event.target.value+"", function(response){
                 console.log(response);
                 $('#jefe').empty();
                 for(i=0; i<response.length; i++){

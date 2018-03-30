@@ -2,23 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Persona;
 use Illuminate\Http\Request;
+use App\Predio;
 
-class PersonasController extends Controller
+class PersonaPredioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        
-        $personas = Persona::all();
 
-        return view('personas.index', compact('personas')); 
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -67,7 +56,9 @@ class PersonasController extends Controller
      */
     public function show($id)
     {
-        //
+        $predio = Predio::findOrFail($id);
+
+        return view('personas-predios.index', ['predio' => $predio]);
     }
 
     /**
@@ -134,9 +125,11 @@ class PersonasController extends Controller
     }
 
     public function PersonafindCreate(Request $request){
+
         $persona = Persona::where('num_dc',$request->num_dc)->first();
 
-        if($persona) {
+        if ($persona) {
+            
             return $persona;
         }
 
@@ -156,4 +149,3 @@ class PersonasController extends Controller
         
     }
 }
-  

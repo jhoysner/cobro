@@ -13,7 +13,7 @@ class CreatePersonasPrediosTable extends Migration
      */
     public function up()
     {
-        Schema::create('personas_predio', function (Blueprint $table) {
+        Schema::create('persona_predio', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('persona_id')->unsigned();
             $table->integer('predio_id')->unsigned();
@@ -32,6 +32,6 @@ class CreatePersonasPrediosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('personas_predios');
+        Schema::dropIfExists('persona_predio');
     }
 }

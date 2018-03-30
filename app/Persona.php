@@ -11,4 +11,8 @@ class Persona extends Model
     protected $fillable = [
     	'nombre', 'num_dc', 'email', 'direccion', 'tipo', 'telefono', 
     ];
+
+     public function predios(){
+        return $this->belongsToMany('App\Predio');
+    }
 }

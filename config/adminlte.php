@@ -118,7 +118,7 @@ return [
             'text'        => 'Pages',
             'url'         => 'admin/pages',
             'icon'        => 'file',
-            'can'  => 'manage',
+            'can'  => 'manage-admin',
         ],
         'General',
         [

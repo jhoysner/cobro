@@ -13,14 +13,6 @@
 
 @section('content')
 	<div class="container-fluid">
-{{-- 		<div class="row">
-			<div class="col-md-2">
-				<a href="{{url('admin/predios/create')}}" class="btn btn-success">
-					Nuevo Predio <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-				</a>
-			</div>
-		</div> --}}
-
 		<br>
 		<ul class="nav nav-tabs">
 		  <li role="presentation"><a href="{{url('admin/predios')}}">Predios</a></li>
@@ -65,9 +57,11 @@
 			</div>	
 			
 			<br>
-			<button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal">
-		    	Asignar
-		  	</button>
+			@unless($predios->isEmpty())
+				<button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal">
+			    	Asignar
+			  	</button>
+			@endunless
 
 
 			<div class="modal fade" tabindex="-1" role="dialog" id="myModal">

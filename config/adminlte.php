@@ -112,40 +112,55 @@ return [
         [
             'text' => 'Blog',
             'url'  => 'admin/blog',
-            'can'  => 'manage',
+            'can'  => 'admin',
         ],
         [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'file',
-            'can'  => 'manage-admin',
+            'text'        => 'probando',
+            'url'         => '#',
+            'icon'        => 'user',
+            'can' => 'probando',
+            
         ],
         'General',
+        [
+            'text'        => 'Perfil',
+            'url'         => '#',
+            'icon'        => 'address-card ',
+            
+        ],
         [
             'text' => 'Usuarios',
             'url'  => 'admin/usuarios',
             'icon' => 'user',
+            'can'  => 'usuarios',
+
         ],        
         [
             'text' => 'Personas',
             'url'  => 'admin/personas',
             'icon' => 'users',
+            'can'  => 'personas',
+
         ],
         [
             'text' => 'relaciones',
             'url'  => 'admin/settings',
             'icon' => 'sitemap ',
-        ],        
+            'can' => 'relaciones ',
+        ],  
+
         'Cobro Predial',
         [
             'text' => 'Predios',
             'url'  => 'admin/predios',
-            'icon' => 'user',
+            'icon' => 'building',
+            'can' => 'predios',
         ],
         [
             'text' => 'Proceso Predial',
             'url'  => 'admin/settings',
             'icon' => 'lock',
+            'can' => 'p_predial',
         ],
         [
             'text'    => 'Multilevel',
@@ -184,6 +199,7 @@ return [
                     'url'  => '#',
                 ],
             ],
+            'can' => 'sub_nivel',
         ],
     ],
 

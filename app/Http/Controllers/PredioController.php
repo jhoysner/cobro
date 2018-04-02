@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Asignacion;
+use App\Notifications\AsignacionAdministrativaPredio;
 use App\PersonaPredio;
 use App\Predio;
 use App\User;
@@ -262,9 +263,14 @@ class PredioController extends Controller
 
             }
             
+            $encargado = User::find($request->encargado);
+
+            $encargado->notify(new AsignacionAdministrativaPredio($encargado));
+
             Session::flash('message','Se han asignados exitosamente');
             return  redirect('admin/predios');
         }
+
         else {
 
             Session::flash('message-error','Elija un usuario encargado para asignar');

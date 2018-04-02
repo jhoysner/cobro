@@ -57,8 +57,14 @@
                 <div class="navbar-custom-menu">
 
                     <ul class="nav navbar-nav">
+                        <li><a href="{{route('notificaciones.index')}}" ><i class="fa fa-bell-o" style="color:white;"></i>
+                            @if ($count = Auth::user()->unreadnotifications->count())
+                                <span class="badge badge" style="background-color:#fa3e3e;color:white">{{$count}}</span>
+                            @endif
+                            </a>
+                        </li>   
                         <li>
-                                <p style="padding-top: 15px;padding-bottom: 15px;line-height: 20px;color:white">
+                                <p style="padding-top: 15px;line-height: 20px;color:white">
                                     <i class="fa fa-fw fa-user"></i> {{ auth()->user()->name}}( {{auth()->user()->type->nombre}})
                                 </p>
                         </li>

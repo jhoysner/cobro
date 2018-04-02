@@ -33,4 +33,9 @@ Route::group(['prefix' => 'admin' , 'middleware' => 'auth'] ,function ()
 	Route::get('usuarios-tipo/{id}', 'UserController@userstype');
 	Route::resource('personas-predios', 'PersonaPredioController');
 
+	Route::get('notificaciones', 'NotificationController@index')->name('notificaciones.index');
+    Route::get('notificaciones/{id}', 'NotificationController@read')->name('notifications.read');
+    // Route::delete('notificaciones/{id}', 'NotificationController@destroy')->name('notifications.destroy');
+    Route::get('notificaciones-visibilidad/{id}', 'NotificationController@visibilidad')->name('notification.visibilidad');
+
 });

@@ -57,11 +57,13 @@
 			</div>	
 			
 			<br>
-			@unless($predios->isEmpty())
-				<button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal">
-			    	Asignar
-			  	</button>
-			@endunless
+			@isset ($predios)
+				@unless($predios->isEmpty())
+					<button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal">
+				    	Asignar
+				  	</button>
+				@endunless
+			@endisset
 
 
 			<div class="modal fade" tabindex="-1" role="dialog" id="myModal">

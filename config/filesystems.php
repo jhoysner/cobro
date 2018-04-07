@@ -48,6 +48,12 @@ return [
             'root' => storage_path('app'),
         ],
 
+        'csv' => [
+            'driver' => 'local',
+            'root' =>  public_path() . '/csv',
+
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

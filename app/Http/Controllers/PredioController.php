@@ -192,6 +192,7 @@ class PredioController extends Controller
     {
 
         $type = auth()->user()->type->nombre;
+        
 
         if ($type == "Coordinador") {
             

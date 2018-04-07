@@ -38,4 +38,6 @@ Route::group(['prefix' => 'admin' , 'middleware' => 'auth'] ,function ()
     // Route::delete('notificaciones/{id}', 'NotificationController@destroy')->name('notifications.destroy');
     Route::get('notificaciones-visibilidad/{id}', 'NotificationController@visibilidad')->name('notification.visibilidad');
 
+    Route::post('importar', 'ImportController@import')->name('importar');
+
 });

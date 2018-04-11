@@ -3,6 +3,8 @@
 @section('adminlte_css')
     <link rel="stylesheet"
           href="{{ asset('vendor/adminlte/dist/css/skins/skin-' . config('adminlte.skin', 'blue') . '.min.css')}} ">
+    <link rel="stylesheet"
+          href="{{ asset('css/app.css')}} ">
     @stack('css')
     @yield('css')
 @stop
@@ -58,7 +60,7 @@
 
                     <ul class="nav navbar-nav">
                         <li>
-                                <p style="padding-top: 15px;padding-bottom: 15px;line-height: 20px;color:white">
+                                <p style="padding-top: 15px; line-height: 20px;color:white">
                                     <i class="fa fa-fw fa-user"></i> {{ auth()->user()->name}}( {{auth()->user()->type->nombre}})
                                 </p>
                         </li>

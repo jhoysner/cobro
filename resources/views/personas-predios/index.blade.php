@@ -57,7 +57,14 @@
 		    </thead>
 
 		    <tbody>
-			
+		    	@foreach($predio->personas as $personas)
+		    		<tr>
+		    			<td>{{ $personas->nombre }}</td>
+		    			<td>{{ $personas->pivot->porcentaje }}</td>
+		    			<td><a class="btn btn-xs btn-info"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+		    		<td>
+		    		</tr>
+		    	@endforeach
 			</tbody>
 		</table>
 	</div>
@@ -103,7 +110,7 @@
 		</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Enviar</button>
       </div>
       {!! Form::close()!!}
@@ -168,9 +175,8 @@
 			</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         <button type="button" id ="btnForm" class="btn btn-primary">relacionar</button>
-        <button type="button" id ="btnForm" class="btn btn-primary">Relacionar y Guardar</button>
       </div>
 	  {!! Form::close()!!}
     </div><!-- /.modal-content -->
@@ -197,7 +203,7 @@
         $('#identificador').change(function(event){
             $.get("/admin/persona-find/"+event.target.value+"", function(response){
                 console.log(response);
-                if(response == '')
+                if(response != '')
                 {
 	                $('#Nombre').val(response.nombre);
 	                $('#Email').val(response.email);

@@ -15,6 +15,22 @@
 				<a href="{{url('admin/predios/create')}}" class="btn btn-success">
 					Nuevo Predio <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				</a>
+			</div>			
+			<div class="pull-right">
+
+				@if(Auth::user()->type->nombre == 'Admin')
+				<div class="col-md-3">
+				   <form action="{{route('importar')}}" enctype="multipart/form-data" method="POST">
+				           {{ csrf_field() }}
+					
+					<div class="form-group">
+					    <input id="archivo" accept=".csv" name="archivo" type="file" required="" />
+					    <input name="MAX_FILE_SIZE" type="hidden" value="20000" /> <br>
+					    <input class="btn btn-info btn-xs" name="enviar" type="submit" value="Importa"  style="margin-top: -2em" />
+					</div>
+				    </form>
+				</div>
+				@endif
 			</div>
 		</div>
 

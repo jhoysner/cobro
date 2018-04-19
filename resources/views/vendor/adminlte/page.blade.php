@@ -66,11 +66,8 @@
                             </a>
                         </li>   
                         <li>
-<<<<<<< HEAD
-                                <p style="padding-top: 15px; line-height: 20px;color:white">
-=======
+
                                 <p style="padding-top: 15px;line-height: 20px;color:white">
->>>>>>> 8793f947ac3221fd4e8a9e28866347a3d7812d57
                                     <i class="fa fa-fw fa-user"></i> {{ auth()->user()->name}}( {{auth()->user()->type->nombre}})
                                 </p>
                         </li>

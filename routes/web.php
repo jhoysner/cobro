@@ -22,8 +22,6 @@ Route::group(['prefix' => 'admin' , 'middleware' => 'auth'] ,function ()
 	Route::resource('usuarios', 'UserController');
 	Route::get('usuarios-tipo/{id}', 'UserController@userstype');
 	Route::resource('personas-predios', 'PersonaPredioController');
-<<<<<<< HEAD
-=======
 
 	Route::get('notificaciones', 'NotificationController@index')->name('notificaciones.index');
     Route::get('notificaciones/{id}', 'NotificationController@read')->name('notifications.read');
@@ -32,5 +30,5 @@ Route::group(['prefix' => 'admin' , 'middleware' => 'auth'] ,function ()
 
     Route::post('importar', 'ImportController@import')->name('importar');
 
->>>>>>> 8793f947ac3221fd4e8a9e28866347a3d7812d57
+
 });

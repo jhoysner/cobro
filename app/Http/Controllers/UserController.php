@@ -13,8 +13,7 @@ class UserController extends Controller
 
     public function index()
     {
-        
-        $usuarios = User::where('id','<>',1)->get();
+        $usuarios = User::where('id','<>',1)->get();      
         
         return view('usuarios.index', compact('usuarios')); 
     }
@@ -52,11 +51,11 @@ class UserController extends Controller
 
         if($usuario->save()){
 
-             $userBoss = new UserBoss;
+            /* $userBoss = new UserBoss;
              $userBoss->user_id = $usuario->id;
              $userBoss->boss_id = $request->jefe;
 
-             $userBoss->save();
+             $userBoss->save();*/
 
             return redirect('/admin/usuarios');
 
@@ -89,14 +88,14 @@ class UserController extends Controller
 
         $tipos =  Type::pluck('nombre', 'id');
 
-        $userbos = UserBoss::where('user_id', $id)->first();
+        //$userbos = UserBoss::where('user_id', $id)->first();
 
 
         $userstype = User::where('type_id', $usuario->type_id - 1)->pluck('name','id');
 
-        $jefe = User::where('id' , $userbos->boss_id)->first();
+        //$jefe = User::where('id' , $userbos->boss_id)->first();
 
-        return view('usuarios.edit', compact('usuario' ,'userstype','tipos', 'jefe'));
+        return view('usuarios.edit', compact('usuario','userstype','tipos'));
     }
 
     /**
@@ -119,11 +118,7 @@ class UserController extends Controller
 
         if($usuario->save()){
 
-             $userBoss =  UserBoss::where('user_id', $id)->first();
-             $userBoss->boss_id = $request->jefe;
-
-             $userBoss->save();
-
+            $userBoss = UserBoss::where('boss_id', $usuario->id )->delete();
             return redirect('/admin/usuarios');
 
         }else {

@@ -11,6 +11,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin' , 'middleware' => 'auth'] ,function () 
 {
+	Route::get('asignar/{id}', 'AsignarController@index');
+	Route::resource('asignar', 'AsignarController');
 	Route::resource('predios', 'PredioController');
 	Route::get('predios-sin-asignar', 'PredioController@predioSinAsignar')->name('unnassigned');
 	Route::get('predios-asignados', 'PredioController@predioAsignado')->name('assignor');

@@ -58,10 +58,14 @@
 		    <tbody>
 			@foreach($predios as $predio)
 		    	<tr>
-		    		<td>{{$predio->ficha_catastral}}</td>
-		    		<td>{{$predio->matricula_inmobiliaria}}</td>
-		    		<td>{{$predio->direccion_predio}}</td>
-		    		<td>{{$predio->nombre_predio}}</td>
+		    		<td>@if(Auth::user()->type->nombre == 'Coordinador') {{$predio->ficha_catastral}}
+		    			@else {{$predio->predio->ficha_catastral}} @endif</td>
+		    		<td>@if(Auth::user()->type->nombre == 'Coordinador') {{$predio->matricula_inmobiliaria}}
+		    			@else {{$predio->predio->matricula_inmobiliaria}} @endif</td>
+		    		<td>@if(Auth::user()->type->nombre == 'Coordinador') {{$predio->direccion_predio}}
+		    			@else {{$predio->predio->direccion_predio}} @endif</td>
+		    		<td>@if(Auth::user()->type->nombre == 'Coordinador') {{$predio->nombre_predio}}
+		    			@else {{$predio->predio->nombre_predio}} @endif</td>
 		    		<td>
 		    			<a class="btn btn-xs btn-success" href="{{ asset('/admin/personas-predios/'.$predio->id) }}">
 		    				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>

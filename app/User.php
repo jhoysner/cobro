@@ -35,7 +35,11 @@ class User extends Authenticatable
 
     public function user_boss()
     {
-        return $this->hasMany('App\UserBoss');
+        return $this->hasOne('App\UserBoss');
     }
 
+    public function boss_users()
+    {
+        return $this->hasMany('App\UserBoss', 'boss_id');
+    }
 }

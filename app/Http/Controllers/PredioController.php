@@ -10,6 +10,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Auth;
 
 class PredioController extends Controller
 {
@@ -20,10 +21,16 @@ class PredioController extends Controller
      */
     public function index()
     {   
+        if(Auth::user()->type->nombre == "Coordinador")
+        {
+            $predios = Predio::all();       
+        }elseif(Auth::user()->type->nombre == "Abogado"){
+            $predios = Asignacion::where('abogado_id', Auth::user()->id)->get();
+        }elseif(Auth::user()->type->nombre == "Secretaria"){
+            $predios = Asignacion::where('secretaria_id', Auth::user()->id)->get();
+        }
 
-        $predios = Predio::all();
-
-        return view('predios.index', compact('predios'));
+            return view('predios.index', compact('predios'));
     }
 
     /**

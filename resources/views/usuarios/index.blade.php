@@ -24,11 +24,12 @@
 		            <th class="text-center">Nombre</th>
 		            <th class="text-center">Email</th>
 		            <th class="text-center">Tipo</th>
+		            <th class="text-center">Jefe</th>
+		            <th class="text-center">Asignar</th>
 		            <th class="text-center"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></th>
 		            <th class="text-center"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></th>
 		        </tr>
 		    </thead>
-
 		    <tbody>
 			@foreach($usuarios as $usuario)
 		    	<tr>
@@ -36,7 +37,9 @@
 		    		<td class="text-center">{{$usuario->name}}</td>
 		    		<td class="text-center">{{$usuario->email}}</td>
 		    		<td class="text-center">{{$usuario->type->nombre}}</td>
-		    		<td class="text-center"><a href="{{ url("admin/usuarios/".$usuario->id."/edit")}}" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+		    		<td class="text-center">@if($usuario->user_boss) {{$usuario->user_boss->boss->name}} @endif</td>
+		    		<td class="text-center">@if($usuario->type->asignar == 1) <a href="{{url('admin/asignar/'.$usuario->id)}}" class="btn btn-xs btn-primary"><i class="fa fa-users"></i></a> @endif</td>
+		    		<td class="text-center"><a href="{{url("admin/usuarios/".$usuario->id."/edit")}}" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
 		    		<td class="text-center">
 		    		    @include('usuarios.delete', ['usuario' => $usuario])
 		    		</td>

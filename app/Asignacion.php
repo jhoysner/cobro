@@ -12,7 +12,6 @@ class Asignacion extends Model
 
 
      public function predio(){
-
      	return  $this->belongsTo('App\Predio' , 'cc_id');
      }
 }

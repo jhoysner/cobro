@@ -12,17 +12,20 @@ class AsignarController extends Controller
     public function index($id)
     {
     	$user = User::find($id);
+
     	if($user->type->nombre == "Coordinador")
     	{
     		$tipo = Type::where('nombre', 'Abogado')->first();
     		$funcionarios = User::where('type_id', $tipo->id)->get();
-            dd($funcionarios);
-    	}elseif($user->type->nombre == "Abogado")
+
+    	}
+        elseif($user->type->nombre == "Abogado")
     	{
     		$tipo = Type::where('nombre', 'Secretaria')->first();
     		Type::pluck('nombre', 'id');
     		$funcionarios = User::where('type_id', $tipo->id)->get();
-    	}elseif($user->type->nombre == "Juez")
+    	}
+        elseif($user->type->nombre == "Juez")
         {
             $tipo = Type::where('nombre', 'Coordinador')->first();
             Type::pluck('nombre', 'id');

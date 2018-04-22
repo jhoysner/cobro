@@ -126,6 +126,7 @@ return [
             'text'        => 'Perfil',
             'url'         => '#',
             'icon'        => 'address-card ',
+            'can'        => 'perfil',
             
         ],
         [
@@ -149,7 +150,6 @@ return [
             'can' => 'relaciones ',
         ],  
 
-        'Cobro Predial',
         [
             'text' => 'Predios',
             'url'  => 'admin/predios',
@@ -200,7 +200,8 @@ return [
                 ],
             ],
             'can' => 'sub_nivel',
-        ],
+        ]
+
     ],
 
     /*

@@ -24,13 +24,17 @@ class PredioController extends Controller
         if(Auth::user()->type->nombre == "Coordinador")
         {
             $predios = Predio::all();       
-        }elseif(Auth::user()->type->nombre == "Abogado"){
+        }
+        elseif(Auth::user()->type->nombre == "Abogado")
+        {
             $predios = Asignacion::where('abogado_id', Auth::user()->id)->get();
-        }elseif(Auth::user()->type->nombre == "Secretaria"){
+        }
+        elseif(Auth::user()->type->nombre == "Secretaria")
+        {
             $predios = Asignacion::where('secretaria_id', Auth::user()->id)->get();
         }
 
-            return view('predios.index', compact('predios'));
+        return view('predios.index', compact('predios'));
     }
 
     /**

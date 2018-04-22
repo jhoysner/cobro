@@ -38,12 +38,17 @@
 
 		<ul class="nav nav-tabs">
 		  <li role="presentation" class="active"><a href="{{url('admin/predios')}}">Predios</a></li>
-		  <li role="presentation"><a href="{{route('unnassigned')}}">Predios sin Asignar</a></li>
-		  <li role="presentation"><a href="{{route('assignor')}}">Predios Asignados</a></li> 
+
+		 	@if (Auth::user()->type->nombre != 'Secretaria')
+		 		<li role="presentation"><a href="{{route('unnassigned')}}">Predios sin Asignar</a></li>
+		  		<li role="presentation" class="active"><a href="{{route('assignor')}}">Predios Asignados</a></li> 
+		 	@endif
 		</ul>
 		<br>
-		<table class="table table-bordered cell-border table-hover" id="example"  data-form="deleteForm">
-			 <thead>
+		@isset($predios)
+	
+			<table class="table table-bordered cell-border table-hover" id="example"  data-form="deleteForm">
+			<thead>
 		        <tr class="active">
 		            <th class="text-center">FICHA CATASTRAL</th>
 		            <th class="text-center">MATRICULA INMOBILARIA</th>
@@ -56,29 +61,30 @@
 		    </thead>
 
 		    <tbody>
-			@foreach($predios as $predio)
-		    	<tr>
-		    		<td>@if(Auth::user()->type->nombre == 'Coordinador') {{$predio->ficha_catastral}}
-		    			@else {{$predio->predio->ficha_catastral}} @endif</td>
-		    		<td>@if(Auth::user()->type->nombre == 'Coordinador') {{$predio->matricula_inmobiliaria}}
-		    			@else {{$predio->predio->matricula_inmobiliaria}} @endif</td>
-		    		<td>@if(Auth::user()->type->nombre == 'Coordinador') {{$predio->direccion_predio}}
-		    			@else {{$predio->predio->direccion_predio}} @endif</td>
-		    		<td>@if(Auth::user()->type->nombre == 'Coordinador') {{$predio->nombre_predio}}
-		    			@else {{$predio->predio->nombre_predio}} @endif</td>
-		    		<td>
-		    			<a class="btn btn-xs btn-success" href="{{ asset('/admin/personas-predios/'.$predio->id) }}">
-		    				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-		    			</a>
-		    		</td>
-		    		<td><a href="{{ url("admin/predios/".$predio->id."/edit")}}" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
-		    		<td>
-		    		    @include('predios.delete', ['predio' => $predio])
-		    		</td>
-		    	</tr>
-			@endforeach
+				@foreach($predios as $predio)
+			    	<tr>
+			    		<td>@if(Auth::user()->type->nombre == 'Coordinador') {{$predio->ficha_catastral}}
+			    			@else {{$predio->predio->ficha_catastral}} @endif</td>
+			    		<td>@if(Auth::user()->type->nombre == 'Coordinador') {{$predio->matricula_inmobiliaria}}
+			    			@else {{$predio->predio->matricula_inmobiliaria}} @endif</td>
+			    		<td>@if(Auth::user()->type->nombre == 'Coordinador') {{$predio->direccion_predio}}
+			    			@else {{$predio->predio->direccion_predio}} @endif</td>
+			    		<td>@if(Auth::user()->type->nombre == 'Coordinador') {{$predio->nombre_predio}}
+			    			@else {{$predio->predio->nombre_predio}} @endif</td>
+			    		<td>
+			    			<a class="btn btn-xs btn-success" href="{{ asset('/admin/personas-predios/'.$predio->id) }}">
+			    				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+			    			</a>
+			    		</td>
+			    		<td><a href="{{ url("admin/predios/".$predio->id."/edit")}}" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+			    		<td>
+			    		    @include('predios.delete', ['predio' => $predio])
+			    		</td>
+			    	</tr>
+				@endforeach
 			</tbody>
-		</table>
+			</table>
+		@endisset	
 	</div>
 
 @stop

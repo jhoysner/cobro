@@ -31,7 +31,7 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('personas', function () {
 
-            if ( auth()->user()->type->id == 1 ||  auth()->user()->type->id == 2 ||  auth()->user()->type->id == 3  ||  auth()->user()->type->id == 4) {
+            if (auth()->user()->type->id == 3  ||  auth()->user()->type->id == 4 ||  auth()->user()->type->id == 5) {
               
                return true;
             }
@@ -39,7 +39,11 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('predios', function () {
                           
-            return true;
+            
+            if ( auth()->user()->type->id == 2 ||  auth()->user()->type->id == 3  ||  auth()->user()->type->id == 4 ||  auth()->user()->type->id == 5) {
+              
+               return true;
+            }
       
         });
     }

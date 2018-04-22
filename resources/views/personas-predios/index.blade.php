@@ -46,12 +46,11 @@
 		</div>
 		<br><br><br>
 
-		<table class="table table-bordered cell-border table-hover" id="example"  data-form="deleteForm">
+		<table class="table table-bordered cell-border table-hover">
 			<thead>
 		        <tr class="active">
 		            <th class="text-center">DUEÑOS</th>
 		            <th class="text-center">PORCENTAJE</th>
-		            <th class="text-center"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></th>
 		            <th class="text-center"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></th>
 		        </tr>
 		    </thead>
@@ -61,8 +60,10 @@
 		    		<tr>
 		    			<td>{{ $personas->nombre }}</td>
 		    			<td>{{ $personas->pivot->porcentaje }}</td>
-		    			<td><a class="btn btn-xs btn-info"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
-		    		<td>
+		    			<td>	
+		    				@include('personas-predios.delete', ['personas' => $personas ])
+						</td>
+		    		
 		    		</tr>
 		    	@endforeach
 			</tbody>

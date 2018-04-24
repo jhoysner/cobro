@@ -45,6 +45,15 @@ class AuthServiceProvider extends ServiceProvider
                return true;
             }
       
+        });        
+
+        Gate::define('procesos', function () {
+                          
+            if ( auth()->user()->type->id == 4 ||  auth()->user()->type->id == 5) {
+              
+               return true;
+            }
+      
         });
     }
 }

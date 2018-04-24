@@ -157,10 +157,10 @@ return [
             'can' => 'predios',
         ],
         [
-            'text' => 'Proceso Predial',
-            'url'  => 'admin/settings',
+            'text' => 'Proceso',
+            'url'  => 'admin/procesos',
             'icon' => 'lock',
-            'can' => 'p_predial',
+            'can' => 'procesos',
         ],
         [
             'text'    => 'Multilevel',

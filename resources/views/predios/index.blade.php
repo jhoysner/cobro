@@ -41,7 +41,7 @@
 
 		 	@if (Auth::user()->type->nombre != 'Secretaria')
 		 		<li role="presentation"><a href="{{route('unnassigned')}}">Predios sin Asignar</a></li>
-		  		<li role="presentation" class="active"><a href="{{route('assignor')}}">Predios Asignados</a></li> 
+		  		<li role="presentation"><a href="{{route('assignor')}}">Predios Asignados</a></li> 
 		 	@endif
 		</ul>
 		<br>
@@ -54,6 +54,9 @@
 		            <th class="text-center">MATRICULA INMOBILARIA</th>
 		            <th class="text-center">Direccion</th>
 		            <th class="text-center">Nombre</th>
+		            @if(Auth::user()->type->expediente == 1)
+		        		<th class="text-center"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></th>
+		            @endif
 		            <th class="text-center"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></th>
 		            <th class="text-center"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></th>
 		            <th class="text-center"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></th>
@@ -64,18 +67,27 @@
 				@foreach($predios as $predio)
 			    	<tr>
 			    		<td>@if(Auth::user()->type->nombre == 'Coordinador') {{$predio->ficha_catastral}}
-			    			@else {{$predio->predio->ficha_catastral}} @endif</td>
+			    			@else {{$predio->ficha_catastral}} @endif</td>
 			    		<td>@if(Auth::user()->type->nombre == 'Coordinador') {{$predio->matricula_inmobiliaria}}
-			    			@else {{$predio->predio->matricula_inmobiliaria}} @endif</td>
+			    			@else {{$predio->matricula_inmobiliaria}} @endif</td>
 			    		<td>@if(Auth::user()->type->nombre == 'Coordinador') {{$predio->direccion_predio}}
-			    			@else {{$predio->predio->direccion_predio}} @endif</td>
+			    			@else {{$predio->direccion_predio}} @endif</td>
 			    		<td>@if(Auth::user()->type->nombre == 'Coordinador') {{$predio->nombre_predio}}
-			    			@else {{$predio->predio->nombre_predio}} @endif</td>
+			    			@else {{$predio->nombre_predio}} @endif</td>
+			    		@if(Auth::user()->type->expediente == 1)
+			    		<td>
+			    			@if ($predio->expediente == NULL) 
+				    			<a class="btn btn-xs btn-warning" href="{{ route('assignor.expedient' , $predio->id) }}">
+				    				<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+				    			</a>
+			    			@endif
+			    		</td>
+			    		@endif
 			    		<td>
 			    			<a class="btn btn-xs btn-success" href="{{ asset('/admin/personas-predios/'.$predio->id) }}">
 			    				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 			    			</a>
-			    		</td>
+			    		</td>			    		
 			    		<td><a href="{{ url("admin/predios/".$predio->id."/edit")}}" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
 			    		<td>
 			    		    @include('predios.delete', ['predio' => $predio])

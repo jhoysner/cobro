@@ -18,7 +18,6 @@ $factory->define(App\Predio::class, function (Faker $faker) {
     'porc_tarifa' => $faker->randomNumber,
     'estrato' => $faker->randomNumber,
     'observacion' => $faker->randomNumber,
-    'expediente' => $faker->randomNumber,
     'v_declarado' => $faker->randomNumber,
     'impuesto_predial'=> $faker->randomNumber, 
     'interes_predial'=> $faker->randomNumber ,

@@ -46,8 +46,9 @@ class Predio extends Model
     	return $this->hasOne('App\Asignacion', 'cc_id');
     }
 
-     public function personas(){
+    public function personas(){
         return $this->belongsToMany('App\Persona')->withPivot('porcentaje');
     }
+    
 
 }

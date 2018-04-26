@@ -18,9 +18,9 @@
 		<br>
 
 		<ul class="nav nav-tabs">
-		  <li role="presentation"><a href="{{url('admin/predios')}}">Predios</a></li>
-		  <li role="presentation"><a href="{{route('unnassigned')}}">Predios sin Asignar</a></li>
-		  <li role="presentation" class="active"><a href="{{route('assignor')}}">Predios Asignados</a></li> 
+		  	<li role="presentation"><a href="{{url('admin/predios')}}">Predios</a></li>
+		 	<li role="presentation"><a href="{{route('unnassigned')}}">Predios sin Asignar</a></li>
+		  	<li role="presentation" class="active"><a href="{{route('assignor')}}">Predios Asignados</a></li> 
 		</ul>
 		<br>
 		<table class="table table-bordered cell-border table-hover" id="example"  data-form="deleteForm">
@@ -30,6 +30,7 @@
 		            <th class="text-center">MATRICULA INMOBILARIA</th>
 		            <th class="text-center">Direccion</th>
 		            <th class="text-center">Nombre</th>
+		            <th class="text-center">Funcionario</th>
 		        </tr>
 		    </thead>
 
@@ -41,6 +42,18 @@
 				    		<td>{{$predio->matricula_inmobiliaria}}</td>
 				    		<td>{{$predio->direccion_predio}}</td>
 				    		<td>{{$predio->nombre_predio}}</td>
+				    		<td>
+				    			@if (Auth::user()->type->nombre == 'Coordinador')
+				    				
+				    				{{$predio->asignacion->abogado->name}}
+
+				    			@elseif(Auth::user()->type->nombre == 'Abogado')	
+				    				
+				    				{{$predio->asignacion->secretaria->name}}
+
+				    			@endif
+				    			
+				    		</td>
 				    	</tr>
 					@endforeach
 		    	@endisset

@@ -126,6 +126,7 @@ return [
             'text'        => 'Perfil',
             'url'         => '#',
             'icon'        => 'address-card ',
+            'can'        => 'perfil',
             
         ],
         [
@@ -149,7 +150,6 @@ return [
             'can' => 'relaciones ',
         ],  
 
-        'Cobro Predial',
         [
             'text' => 'Predios',
             'url'  => 'admin/predios',
@@ -157,10 +157,10 @@ return [
             'can' => 'predios',
         ],
         [
-            'text' => 'Proceso Predial',
-            'url'  => 'admin/settings',
+            'text' => 'Proceso',
+            'url'  => 'admin/procesos',
             'icon' => 'lock',
-            'can' => 'p_predial',
+            'can' => 'procesos',
         ],
         [
             'text'    => 'Multilevel',
@@ -200,7 +200,8 @@ return [
                 ],
             ],
             'can' => 'sub_nivel',
-        ],
+        ]
+
     ],
 
     /*

@@ -1,6 +1,5 @@
-++
 
-++-@extends('Layouts.principal')
+@extends('layouts.principal')
 @section('contenido')
 <div id="encabezado" class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div id="caja_respuesta"></div>

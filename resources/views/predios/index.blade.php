@@ -38,17 +38,25 @@
 
 		<ul class="nav nav-tabs">
 		  <li role="presentation" class="active"><a href="{{url('admin/predios')}}">Predios</a></li>
-		  <li role="presentation"><a href="{{route('unnassigned')}}">Predios sin Asignar</a></li>
-		  <li role="presentation"><a href="{{route('assignor')}}">Predios Asignados</a></li> 
+
+		 	@if (Auth::user()->type->nombre != 'Secretaria')
+		 		<li role="presentation"><a href="{{route('unnassigned')}}">Predios sin Asignar</a></li>
+		  		<li role="presentation"><a href="{{route('assignor')}}">Predios Asignados</a></li> 
+		 	@endif
 		</ul>
 		<br>
-		<table class="table table-bordered cell-border table-hover" id="example"  data-form="deleteForm">
-			 <thead>
+		@isset($predios)
+	
+			<table class="table table-bordered cell-border table-hover" id="example"  data-form="deleteForm">
+			<thead>
 		        <tr class="active">
 		            <th class="text-center">FICHA CATASTRAL</th>
 		            <th class="text-center">MATRICULA INMOBILARIA</th>
 		            <th class="text-center">Direccion</th>
 		            <th class="text-center">Nombre</th>
+		            @if(Auth::user()->type->expediente == 1)
+		        		<th class="text-center"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></th>
+		            @endif
 		            <th class="text-center"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></th>
 		            <th class="text-center"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></th>
 		            <th class="text-center"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></th>
@@ -67,6 +75,13 @@
 		    		<td>@if(!$predio->predio) {{$predio->nombre_predio}}
 		    			@else {{$predio->predio->nombre_predio}} @endif</td>
 		    		<td>
+			    		@if ($predio->expediente == NULL) 
+				    		<a class="btn btn-xs btn-warning" href="{{ route('assignor.expedient' , $predio->id) }}">
+				    			<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+				    		</a>
+			    		@endif
+			    	</td>
+		    		<td>
 		    			<a class="btn btn-xs btn-success" href="{{ asset('/admin/personas-predios/'.$predio->id) }}">
 		    				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 		    			</a>
@@ -78,7 +93,8 @@
 		    	</tr>
 			@endforeach
 			</tbody>
-		</table>
+			</table>
+		@endisset	
 	</div>
 
 @stop

@@ -46,6 +46,11 @@ class PersonaPredioController extends Controller
     public function destroy($id)
     {
 
+        $persona = PersonaPredio::where('persona_id', $id)->first();
+
+        $persona->delete();
+
+        return back();
     }
 
     public function predioAsignarPersona(Request $request)

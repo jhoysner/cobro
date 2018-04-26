@@ -26,7 +26,7 @@ class CreatePrediosTable extends Migration
             $table->string('tipo_tarifa');// 
             $table->string('destino_economico');//
             $table->integer('porc_tarifa');//este se maneja con un boolean 0 y 1
-            $table->string('expediente');//  esto va en otra tabla
+            $table->string('expediente')->nullable();//  esto va en otra tabla
 
 
             $table->date('inicio');

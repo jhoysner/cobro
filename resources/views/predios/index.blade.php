@@ -18,7 +18,7 @@
 			</div>			
 			<div class="pull-right">
 
-				@if(Auth::user()->type->nombre == 'Admin')
+				@if(Auth::user()->type->nombre == 'Coordinador')
 				<div class="col-md-3">
 				   <form action="{{route('importar')}}" enctype="multipart/form-data" method="POST">
 				           {{ csrf_field() }}
@@ -58,13 +58,13 @@
 		    <tbody>
 			@foreach($predios as $predio)
 		    	<tr>
-		    		<td>@if(Auth::user()->type->nombre == 'Coordinador') {{$predio->ficha_catastral}}
+		    		<td>@if(!$predio->predio) {{$predio->ficha_catastral}}
 		    			@else {{$predio->predio->ficha_catastral}} @endif</td>
-		    		<td>@if(Auth::user()->type->nombre == 'Coordinador') {{$predio->matricula_inmobiliaria}}
+		    		<td>@if(!$predio->predio) {{$predio->matricula_inmobiliaria}}
 		    			@else {{$predio->predio->matricula_inmobiliaria}} @endif</td>
-		    		<td>@if(Auth::user()->type->nombre == 'Coordinador') {{$predio->direccion_predio}}
+		    		<td>@if(!$predio->predio) {{$predio->direccion_predio}}
 		    			@else {{$predio->predio->direccion_predio}} @endif</td>
-		    		<td>@if(Auth::user()->type->nombre == 'Coordinador') {{$predio->nombre_predio}}
+		    		<td>@if(!$predio->predio) {{$predio->nombre_predio}}
 		    			@else {{$predio->predio->nombre_predio}} @endif</td>
 		    		<td>
 		    			<a class="btn btn-xs btn-success" href="{{ asset('/admin/personas-predios/'.$predio->id) }}">

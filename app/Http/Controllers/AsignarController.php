@@ -16,7 +16,6 @@ class AsignarController extends Controller
     	{
     		$tipo = Type::where('nombre', 'Abogado')->first();
     		$funcionarios = User::where('type_id', $tipo->id)->get();
-            dd($funcionarios);
     	}elseif($user->type->nombre == "Abogado")
     	{
     		$tipo = Type::where('nombre', 'Secretaria')->first();

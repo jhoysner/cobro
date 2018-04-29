@@ -52,6 +52,12 @@ return [
             'driver' => 'local',
             'root' =>  public_path() . '/csv',
 
+        ],        
+        
+        'documentos' => [
+            'driver' => 'local',
+            'root' =>  public_path() . '/documentos',
+
         ],
 
         'public' => [

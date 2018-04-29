@@ -37,9 +37,8 @@ Route::group(['prefix' => 'admin' , 'middleware' => 'auth'] ,function ()
 
     Route::post('importar', 'ImportController@import')->name('importar');
 
-    Route::get('procesos', function (){
+    Route::resource('procesos','ProcesoController');
 
-    	dd('listo');
-    });
+    Route::post('proceso-upload-file','ProcesoController@uploadFile')->name('proceso.upload.file');
 
 });
